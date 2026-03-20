@@ -1,0 +1,7 @@
+streamlit==1.31.0
+PyPDF2
+nltk
+scikit-learn
+matplotlib
+sentence-transformers==2.2.2
+torch==2.0.1
