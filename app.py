@@ -43,8 +43,8 @@ setup_nltk()
 st.markdown("""
 <style>
 .main {
-    background-color: #0e1117;
-    color: white;
+    background-color: white;
+    color: black;
 }
 .stButton>button {
     background: linear-gradient(90deg, #00c6ff, #0072ff);
