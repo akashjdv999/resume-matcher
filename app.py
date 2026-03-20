@@ -1,4 +1,12 @@
 import streamlit as st
+
+# ✅ MUST BE FIRST STREAMLIT COMMAND
+st.set_page_config(
+    page_title="AI Resume Matcher Pro",
+    page_icon="📄",
+    layout="wide"
+)
+
 import PyPDF2
 import re
 import nltk
@@ -28,14 +36,8 @@ def setup_nltk():
         except LookupError:
             nltk.download(name, download_dir=nltk_data_dir)
 
+# ✅ CALL AFTER CONFIG
 setup_nltk()
-
-# Page config
-st.set_page_config()
-page_title="AI Resume Matcher Pro",
-page_icon="📄",
-layout="wide"
-
 
 # ---------- CUSTOM CSS ----------
 st.markdown("""
@@ -123,7 +125,6 @@ def main():
     col1, col2 = st.columns(2)
 
     with col1:
-        # ✅ MULTIPLE FILES ENABLED
         uploaded_files = st.file_uploader(
             "📤 Upload Resumes (PDF)",
             type=["pdf"],
@@ -175,17 +176,14 @@ def main():
             st.error("No valid resumes processed")
             return
 
-        # ✅ SORTING (RANKING)
         results.sort(key=lambda x: x["score"], reverse=True)
 
-        # ---------- RANKING ----------
         st.divider()
         st.subheader("🏆 Resume Ranking")
 
         for i, r in enumerate(results, 1):
             st.write(f"{i}. {r['name']} — {r['score']}%")
 
-        # ---------- DETAILS ----------
         st.divider()
         st.subheader("📊 Detailed Results")
 
@@ -218,7 +216,6 @@ def main():
                     else:
                         st.success("No missing keywords 🎉")
 
-                # Download per resume
                 report = f"""
 Resume: {r['name']}
 Match Score: {r['score']}%
