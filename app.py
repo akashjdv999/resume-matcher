@@ -31,11 +31,11 @@ def setup_nltk():
 setup_nltk()
 
 # Page config
-st.set_page_config(
-    page_title="AI Resume Matcher Pro",
-    page_icon="📄",
-    layout="wide"
-)
+st.set_page_config()
+page_title="AI Resume Matcher Pro",
+page_icon="📄",
+layout="wide"
+
 
 # ---------- CUSTOM CSS ----------
 st.markdown("""
