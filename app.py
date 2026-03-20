@@ -196,7 +196,7 @@ def main():
                 if r["score"] < 40:
                     st.error("❌ Low Match")
                 elif r["score"] < 70:
-                    st.warning("⚠️ متوسط Match")
+                    st.warning("⚠️ Medium Match")
                 else:
                     st.success("✅ Excellent Match")
 
