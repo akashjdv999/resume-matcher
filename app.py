@@ -1,6 +1,6 @@
 import streamlit as st
 
-# ✅ MUST BE FIRST STREAMLIT COMMAND
+# first streamlit command 
 st.set_page_config(
     page_title="AI Resume Matcher Pro",
     page_icon="📄",
@@ -17,7 +17,7 @@ from collections import Counter
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
-# ✅ FIXED NLTK SETUP (CLOUD SAFE)
+# NLTK setup
 @st.cache_resource
 def setup_nltk():
     nltk_data_dir = "/tmp/nltk_data"
@@ -36,10 +36,9 @@ def setup_nltk():
         except LookupError:
             nltk.download(name, download_dir=nltk_data_dir)
 
-# ✅ CALL AFTER CONFIG
 setup_nltk()
 
-# ---------- CUSTOM CSS ----------
+# CSS begins
 st.markdown("""
 <style>
 .main {
@@ -56,7 +55,7 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# ---------- SIDEBAR ----------
+# this is the code of sidebar
 with st.sidebar:
     st.title("🤖 Resume Matcher Pro")
     st.write("Upgrade your resume using AI insights 🚀")
@@ -71,8 +70,7 @@ with st.sidebar:
     - Multi Resume Ranking
     """)
 
-# ---------- FUNCTIONS ----------
-
+# functions
 def extract_text(uploaded_file):
     try:
         pdf_reader = PyPDF2.PdfReader(uploaded_file)
@@ -116,7 +114,7 @@ def extract_keywords(text, top_n=15):
     freq = Counter(words)
     return [w for w, _ in freq.most_common(top_n)]
 
-# ---------- MAIN UI ----------
+# main theme
 
 def main():
     st.title("📄 AI Resume Matcher Pro")
@@ -233,6 +231,5 @@ Missing Keywords:
                     file_name=f"{r['name']}_analysis.txt"
                 )
 
-# RUN
 if __name__ == "__main__":
     main()
